@@ -26,9 +26,6 @@ function playRound (playerSelection, computerSelection) {
     }    
 }
 
-// return `You Lose! ${computerSelection} beats ${playerSelection}`;
-// return "It's a draw!";
-
 function game() {
     let wins = 0;
     let draws = 0;
@@ -53,9 +50,9 @@ function game() {
     if (result > 0) {
         console.log("You win the match!");
     } else if (result < 0) {
-        console.log("You lose the match")
+        console.log("You lose the match");
     } else {
-        console.log("The match is a draw!")
+        console.log("The match is a draw!");
     }
 
 }
