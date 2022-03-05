@@ -1,0 +1,101 @@
+* {
+    font-size: 28px;
+    padding: 8px;
+}
+
+html {
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 75%;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    margin: 0px;
+
+}
+
+button {
+    border-radius: 5px;
+    background-color: rgba(219, 157, 255, 0.815);
+}
+
+/* header starts */
+
+.header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: rgba(232, 203, 255, 0.918);
+    border: 3px solid pink;
+}
+
+
+#resetButton {
+    padding: 8px;
+
+}
+
+#scoreboard {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 100%;
+    
+}
+
+#gameResult {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+/* Header ends */
+
+/* Section 2 starts */
+
+.section2 {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    background-color: rgba(232, 203, 255, 0.918);
+    border: 3px solid pink;
+}
+
+#displayComputerChoice {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#roundResult {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Section 2 ends */
+
+/* Footer starts */
+.footer {
+    margin-top: 8px;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    background-color: rgba(232, 203, 255, 0.918);
+    border: 3px solid pink;
+}
+
+.playButton {
+    padding: 8px;
+}
+/* Footer ends */

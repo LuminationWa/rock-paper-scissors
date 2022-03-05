@@ -2,7 +2,6 @@
 let wins = 0;
 let draws = 0;
 let loses = 0;
-let score = 0;
 
 // Computer's choice
 function getRandomInt(max) {
@@ -12,15 +11,13 @@ function getRandomInt(max) {
 function computerPlay() {
     const pickFrom = ["Rock", "Paper", "Scissors"];
     const computerChoice = pickFrom [getRandomInt(3)];
-    displayComputerChoice.setAttribute('style', 'border: 1px solid black; background: pink');
     displayComputerChoice.textContent = `Computer chooses ${computerChoice}!`;
     return computerChoice;
 }
 
 // Round results
 function playRound (playerSelection) {
-    roundResult.setAttribute('style', 'border: 1px solid black; background: pink');
-
+    
     const computerSelection = computerPlay();
     if (playerSelection.toUpperCase() === computerSelection.toUpperCase()) {
         roundResult.textContent = "It's a draw!";
@@ -48,102 +45,114 @@ function playRound (playerSelection) {
 
 // Updates variables
 function calculateScore (playerSelection) {
-
     switch (playRound(playerSelection)){
         case 1:
             wins++;
-            score++;
             break;
         case 0:
             draws++;
             break;
         case -1:
             loses++;
-            score--;
             break;
-
     }
 }
 
 // Checks if somebody reached 5 points and if so stops the game and displays match winner
 function checkResult() {
-    switch (score) {
-        case 5:
-            gameResult.setAttribute('style', 'border: 1px solid black; background: pink');
-            gameResult.textContent = 'Player reaches 5 points. Player wins'
-            return true;
-        case -5:
-            gameResult.setAttribute('style', 'border: 1px solid black; background: pink');
-            gameResult.textContent = 'Computer reaches 5 points. Computer wins'
-            return true;
+    if (wins == 5){
+        gameResult.textContent = 'Player reaches 5 points. Player wins the match!';
+        return true;
+    }  else if (loses == 5) {
+        gameResult.textContent = 'Computer reaches 5 points. Computer wins the match!';
+        return true;
     }
 }
 
 // Display elements
 const body = document.body;
 
+const header = document.createElement ('div');
+header.classList.add('header');
+body.append(header);
+
+
 const resetButton = document.createElement ('button');
+resetButton.id = 'resetButton';
 resetButton.textContent = 'Restart the game';
 resetButton.onclick = () => {
+    // Sets variables back to 0 and hides past results
     wins = 0;
     draws = 0;
     loses = 0;
-    score = 0;
-    // Makes all display elements invisible except for the scoreboard
-    let list = document.getElementsByTagName('div');
-    list.textContent = "";
-    for (let i = 0; i < list.length; i++) {
-        list[i].textContent = "";
-        list[i].setAttribute('style', 'border: 0px;');
-
-    }
-    scoreboard.textContent = `Total wins: ${wins} Total loses: ${loses} Total draws: ${draws} Total score ${score}`;
-    scoreboard.setAttribute('style', 'border: 1px solid black; background: pink');
+    scoreboard.textContent = `Wins: ${wins} Draws: ${draws} Loses: ${loses}`;
+    gameResult.textContent = "";
+    roundResult.textContent = "";
+    displayComputerChoice.textContent = "";
 };
-body.append(resetButton);
+header.append(resetButton);
 
 const scoreboard = document.createElement ('div');
-scoreboard.textContent = `Total wins: ${wins} Total loses: ${loses} Total draws: ${draws} Total score ${score}`;
-scoreboard.setAttribute('style', 'border: 1px solid black; background: pink');
-body.append(scoreboard);
-
-const displayComputerChoice = document.createElement ('div');
-body.append(displayComputerChoice);
-
-const roundResult = document.createElement ('div');
-body.append(roundResult);
+scoreboard.id = 'scoreboard';
+scoreboard.textContent = `Wins: ${wins} Draws: ${draws} Loses: ${loses}`;
+header.append(scoreboard);
 
 const gameResult = document.createElement ('div');
-body.append(gameResult);
+gameResult.id = 'gameResult';
+header.append(gameResult);
+
+
+const section2 = document.createElement ('div');
+section2.classList.add('section2');
+body.append(section2);
+
+const displayComputerChoice = document.createElement ('div');
+displayComputerChoice.id = 'displayComputerChoice';
+section2.append(displayComputerChoice);
+
+const roundResult = document.createElement ('div');
+roundResult.id = 'roundResult';
+section2.append(roundResult);
 
 // Button functionability
 // Checks what the score is, runs the game and updates the scoreboard after.
+
+const footer = document.createElement ('div');
+footer.classList.add('footer');
+body.append(footer);
+
 const rock = document.createElement ('button');
-body.append(rock);
+rock.classList.add('playButton');
+footer.append(rock);
 rock.textContent = 'Rock';
 rock.onclick = () => {
     if (checkResult() != true) {
         calculateScore("Scissors");
-        scoreboard.textContent = `Total wins: ${wins} Total loses: ${loses} Total draws: ${draws} Total score ${score}`;
+        scoreboard.textContent = `Wins: ${wins} Draws: ${draws} Loses: ${loses}`;
     }
 };
 
+
 const paper = document.createElement ('button');
-body.append(paper);
+paper.classList.add('playButton');
+footer.append(paper);
 paper.textContent = 'Paper';
 paper.onclick = () =>{
     if (checkResult() != true) {
         calculateScore("Paper");
-        scoreboard.textContent = `Total wins: ${wins} Total loses: ${loses} Total draws: ${draws} Total score ${score}`;
+        scoreboard.textContent = `Wins: ${wins} Draws: ${draws} Loses: ${loses}`;
+        checkResult();
     }
 };
     
 const scissors = document.createElement ('button');
-body.append(scissors);
+scissors.classList.add('playButton');
+footer.append(scissors);
 scissors.textContent = 'Scissors';
 scissors.onclick = () => {
     if (checkResult() != true) {
         calculateScore("Scissors");
-        scoreboard.textContent = `Total wins: ${wins} Total loses: ${loses} Total draws: ${draws} Total score ${score}`;
+        scoreboard.textContent = `Wins: ${wins} Draws: ${draws} Loses: ${loses}`;
+        checkResult();
     }
 };
